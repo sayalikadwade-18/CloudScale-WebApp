@@ -664,47 +664,52 @@ The architecture can be further improved by adding:
 
 # 📸 Project Screenshots
 
-### VPC
+🧩 VPC
 
-![VPC](screenshots/01-vpc.png)
 
-### Subnets
 
-![Subnets](screenshots/02-subnets.png)
 
-### NAT Gateway
+🌐 Subnets
 
-![NAT Gateway](screenshots/03-nat-gateway.png)
 
-### Launch Template
 
-![Launch Template](screenshots/04-launch-template.png)
 
-### Auto Scaling Group
+🌐 NAT Gateway
 
-![Auto Scaling Group](screenshots/05-auto-scaling-group.png)
 
-### Bastion Host
 
-![Bastion Host](screenshots/06-bastion-host.png)
 
-### Private EC2
+🚀 Launch Template
 
-![Private EC2](screenshots/07-private-ec2.png)
 
-### Target Group
 
-![Target Group](screenshots/08-target-group.png)
 
-### Application Load Balancer
+📈 Auto Scaling Group
 
-![Application Load Balancer](screenshots/09-load-balancer.png)
 
-### Web Application
 
-![Web Application](screenshots/10-web-application.png)
 
----
+🛡️ Bastion Host
+
+
+
+
+🖥️ Private EC2
+
+
+
+
+🎯 Target Group
+
+
+
+
+⚖️ Application Load Balancer
+
+
+
+
+🎮 Web Application
 
 # 👩‍💻 Author
 
