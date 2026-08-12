@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎮 Tic Tac Toe</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+body{display:flex;justify-content:center;align-items:center;height:100vh;
+background:linear-gradient(-45deg,#6a11cb,#2575fc,#ff416c,#ff4b2b);
+background-size:400% 400%;animation:bgMove 10s ease infinite;}
+@keyframes bgMove{0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;}}
+.game{width:390px;background:rgba(255,255,255,.15);backdrop-filter:blur(18px);
+border-radius:25px;padding:25px;text-align:center;box-shadow:0 15px 40px rgba(0,0,0,.35);}
+h1{color:#fff;font-size:40px;margin-bottom:8px;text-shadow:0 0 15px #fff;}
+.designer{margin-bottom:20px;}
+.designer span{display:inline-block;padding:10px 22px;border-radius:30px;font-size:18px;font-weight:bold;
+background:linear-gradient(90deg,#ff0000,#ff8800,#ffee00,#00ff88,#00ccff,#0066ff,#9900ff,#ff0099,#ff0000);
+background-size:400%;color:white;animation:rainbow 8s linear infinite,float 2s ease-in-out infinite;
+box-shadow:0 0 20px rgba(255,255,255,.5);}
+@keyframes rainbow{0%{background-position:0%;}100%{background-position:400%;}}
+@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-5px);}}
+#status{color:#fff;font-size:22px;margin:15px 0;font-weight:bold;}
+.board{display:grid;grid-template-columns:repeat(3,100px);gap:12px;justify-content:center;}
+.cell{width:100px;height:100px;border-radius:18px;background:white;display:flex;justify-content:center;
+align-items:center;cursor:pointer;font-size:60px;font-weight:bold;transition:.25s;
+box-shadow:0 8px 20px rgba(0,0,0,.25);}
+.cell:hover{transform:scale(1.08) rotate(3deg);background:#f5f5f5;}
+.x{color:#ff1744;animation:pop .3s;}
+.o{color:#2196f3;animation:pop .3s;}
+@keyframes pop{from{transform:scale(0);}to{transform:scale(1);}}
+.win{background:#ffe600;animation:blink .5s infinite alternate;}
+@keyframes blink{from{transform:scale(1);}to{transform:scale(1.1);}}
+button{margin-top:25px;padding:12px 35px;border:none;border-radius:30px;cursor:pointer;color:white;
+font-size:18px;background:linear-gradient(45deg,#00c6ff,#0072ff);transition:.3s;}
+button:hover{transform:scale(1.08);box-shadow:0 0 20px white;}
+.footer{margin-top:20px;color:white;font-size:14px;opacity:.9;}
+@media(max-width:450px){.board{grid-template-columns:repeat(3,80px);}
+.cell{width:80px;height:80px;font-size:45px;}.game{width:95%;}}
+</style>
+</head>
+<body>
+<div class="game">
+<h1>🎮 Tic Tac Toe</h1>
+<div class="designer"><span>✨ Designed by Harshvardhan Sutar ✨</span></div>
+<div id="status">Player X Turn</div>
+<div class="board">
+<div class="cell" onclick="play(this,0)"></div>
+<div class="cell" onclick="play(this,1)"></div>
+<div class="cell" onclick="play(this,2)"></div>
+<div class="cell" onclick="play(this,3)"></div>
+<div class="cell" onclick="play(this,4)"></div>
+<div class="cell" onclick="play(this,5)"></div>
+<div class="cell" onclick="play(this,6)"></div>
+<div class="cell" onclick="play(this,7)"></div>
+<div class="cell" onclick="play(this,8)"></div>
+</div>
+<button onclick="restart()">🔄 Restart Game</button>
+<div class="footer">❤️ Have Fun! | Designed by <b>Harshvardhan Sutar</b></div>
+</div>
+<script>
+let board=["","","","","","","","",""];
+let player="X";
+let gameOver=false;
+const wins=[[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+function play(cell,index){
+if(board[index]!==""||gameOver) return;
+board[index]=player;
+cell.innerHTML=player;
+cell.classList.add(player==="X"?"x":"o");
+checkWinner();
+if(!gameOver){
+player=player==="X"?"O":"X";
+status.innerHTML="Player "+player+" Turn";
+}
+}
+function checkWinner(){
+for(let combo of wins){
+const[a,b,c]=combo;
+if(board[a]&&board[a]===board[b]&&board[a]===board[c]){
+gameOver=true;
+combo.forEach(i=>{document.getElementsByClassName("cell")[i].classList.add("win");});
+status.innerHTML="🏆 Player "+board[a]+" Wins! 🎉";
+setTimeout(()=>{alert("🎉 Congratulations Player "+board[a]+"!");},300);
+return;
+}
+}
+if(!board.includes("")){
+gameOver=true;
+status.innerHTML="🤝 Match Draw!";
+}
+}
+function restart(){
+board=["","","","","","","","",""];
+player="X";
+gameOver=false;
+status.innerHTML="Player X Turn";
+document.querySelectorAll(".cell").forEach(cell=>{cell.innerHTML="";cell.className="cell";});
+}
+</script>
+</body>
+</html>
